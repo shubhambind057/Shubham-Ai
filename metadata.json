@@ -1,0 +1,6 @@
+{
+  "name": "Shubham AI",
+  "description": "Integrated personal AI assistant, real-time voice companion, Android device controller, and Shubham Files documentary research & video production studio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

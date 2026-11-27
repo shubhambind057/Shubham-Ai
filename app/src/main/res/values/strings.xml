@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Shubham AI</string>
+    <string name="tagline_studio">Personal AI Assistant &amp; Shubham Files Studio</string>
+    <string name="cta_start_todays_research">START TODAY\'S RESEARCH</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_studio">Studio</string>
+    <string name="tab_voice">Voice</string>
+    <string name="tab_chat">Chat</string>
+    <string name="tab_tools">Tools</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="cd_app_emblem">Shubham AI emblem</string>
+    <string name="cd_hero_banner">Shubham Files editorial documentary studio desk</string>
+</resources>

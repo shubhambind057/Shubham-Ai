@@ -1,0 +1,110 @@
+{
+  "entities": {
+    "UserPreferenceProfile": {
+      "title": "UserPreferenceProfile",
+      "description": "User-approved language, studio package defaults, AI memory notes, backend proxy URL, and daily automation schedule.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "defaultLanguage": { "type": "string", "enum": ["HINGLISH", "HINDI", "ENGLISH"] },
+        "defaultPackageFormat": { "type": "string", "enum": ["DUAL", "SHORT", "LONG"] },
+        "memoryNotes": { "type": "array", "description": "User-approved persistent memory notes (max 40)." },
+        "backendProxyUrl": { "type": "string", "description": "Optional non-secret server-side backend proxy URL for third-party APIs." },
+        "automationEnabled": { "type": "boolean" },
+        "automationHour": { "type": "integer" },
+        "automationMinute": { "type": "integer" },
+        "automationBeat": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." }
+      },
+      "required": ["userId", "defaultLanguage", "defaultPackageFormat", "memoryNotes", "backendProxyUrl", "automationEnabled", "automationHour", "automationMinute", "automationBeat", "createdAt", "updatedAt"]
+    },
+    "ChatMessageRecord": {
+      "title": "ChatMessageRecord",
+      "description": "Personal AI Assistant conversation message with citations and certainty tag.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "threadId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "assistant"] },
+        "content": { "type": "string" },
+        "language": { "type": "string", "enum": ["HINGLISH", "HINDI", "ENGLISH"] },
+        "citations": { "type": "array", "description": "Grounded source entries (max 20)." },
+        "certaintyTag": { "type": "string", "enum": ["VERIFIED", "MIXED", "OPINION", "UNCERTAIN", "USER"] },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." }
+      },
+      "required": ["userId", "threadId", "role", "content", "language", "citations", "certaintyTag", "createdAt", "updatedAt"]
+    },
+    "StudioProject": {
+      "title": "StudioProject",
+      "description": "Shubham Files documentary research and video production workspace item.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "topicTitle": { "type": "string" },
+        "categoryBeat": { "type": "string" },
+        "language": { "type": "string", "enum": ["HINGLISH", "HINDI", "ENGLISH"] },
+        "packageFormat": { "type": "string", "enum": ["DUAL", "SHORT", "LONG"] },
+        "angle": { "type": "string" },
+        "hook": { "type": "string" },
+        "whyCoverNow": { "type": "string" },
+        "stage": { "type": "string", "enum": ["DISCOVERED", "TOPIC_APPROVED", "IN_PRODUCTION", "FINAL_APPROVED", "EXPORTED"] },
+        "topicApproved": { "type": "boolean" },
+        "finalApproved": { "type": "boolean" },
+        "verifiedFacts": { "type": "array", "description": "Verified fact-check entries with source, link, and date (max 30)." },
+        "disputedClaims": { "type": "array", "description": "Disputed or unverified claims (max 20)." },
+        "assumptions": { "type": "array", "description": "Assumptions separated from confirmed facts (max 20)." },
+        "shortScript": { "type": "string" },
+        "longScript": { "type": "string" },
+        "visualDirections": { "type": "string" },
+        "onScreenText": { "type": "array", "description": "On-screen text callouts (max 40)." },
+        "footageAssets": { "type": "array", "description": "License-verified stock media links and attribution (max 30)." },
+        "voiceoverVoice": { "type": "string" },
+        "voiceoverStatus": { "type": "string", "enum": ["NOT_GENERATED", "GENERATED_LOCAL", "TTS_PREVIEW_ONLY"] },
+        "voiceoverLocalPath": { "type": "string" },
+        "subtitlesSrt": { "type": "string" },
+        "capcutPlan": { "type": "string" },
+        "capcutChecklist": { "type": "array", "description": "CapCut editing checklist items (max 25)." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." }
+      },
+      "required": ["userId", "topicTitle", "categoryBeat", "language", "packageFormat", "angle", "hook", "whyCoverNow", "stage", "topicApproved", "finalApproved", "verifiedFacts", "disputedClaims", "assumptions", "shortScript", "longScript", "visualDirections", "onScreenText", "footageAssets", "voiceoverVoice", "voiceoverStatus", "voiceoverLocalPath", "subtitlesSrt", "capcutPlan", "capcutChecklist", "createdAt", "updatedAt"]
+    },
+    "AutomationRun": {
+      "title": "AutomationRun",
+      "description": "Audit log for scheduled or manual daily research automation jobs.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "triggerType": { "type": "string", "enum": ["SCHEDULED", "MANUAL"] },
+        "status": { "type": "string", "enum": ["COMPLETED", "RETRYING", "FAILED"] },
+        "attemptCount": { "type": "integer" },
+        "summary": { "type": "string" },
+        "projectId": { "type": "string" },
+        "errorMessage": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Client submits FieldValue.serverTimestamp()." }
+      },
+      "required": ["userId", "triggerType", "status", "attemptCount", "summary", "projectId", "errorMessage", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/preferences/{prefId}": {
+      "schema": { "$ref": "#/entities/UserPreferenceProfile" },
+      "description": "Per-user AI assistant preferences, memory notes, and daily automation configuration."
+    },
+    "/users/{userId}/chatMessages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessageRecord" },
+      "description": "Per-user personal AI assistant chat history."
+    },
+    "/users/{userId}/studioProjects/{projectId}": {
+      "schema": { "$ref": "#/entities/StudioProject" },
+      "description": "Per-user Shubham Files documentary research and video production projects."
+    },
+    "/users/{userId}/automationRuns/{runId}": {
+      "schema": { "$ref": "#/entities/AutomationRun" },
+      "description": "Per-user daily automation execution audit trail."
+    }
+  }
+}
